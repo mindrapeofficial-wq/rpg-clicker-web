@@ -81,8 +81,8 @@
     sessionStorage.removeItem('rpg-google-attempted');
     user = session.user;
     const fullName = user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'Jugador';
-    const { data: record, error: loadError } = await client.from('rpg_clicker_players').select('game_data,display_name').eq('user_id', user.id).maybeSingle();
-    displayName = record?.display_name ? String(record.display_name).trim().slice(0, 12) : String(fullName).trim().split(/[\s(]/)[0].slice(0, 12) || 'Jugador';
+    displayName = String(fullName).trim().split(/[\s(]/)[0].slice(0, 12) || 'Jugador';
+    const { data: record, error: loadError } = await client.from('rpg_clicker_players').select('game_data').eq('user_id', user.id).maybeSingle();
     if (loadError) { cloudError(loadError); setStatus('No se pudo cargar la partida. Comprueba tu conexión.'); panel.hidden = false; button.hidden = true; return; }
     writeLocalSave({ ...defaults(), ...(record?.game_data || {}), PlayerUsername: displayName });
     panel.remove();
@@ -90,8 +90,6 @@
   };
   document.addEventListener('visibilitychange', () => { if (document.hidden) saveNow(); });
 })();
-
-
 
 
 
