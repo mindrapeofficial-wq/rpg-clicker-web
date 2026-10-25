@@ -179,7 +179,6 @@
     <div id="arcanum-loading" role="status" aria-label="Cargando RPG CLICKER"><img src="arcanumgames-studio-logo.png" alt="arcanumgames.es"><div class="loading-mark" aria-hidden="true"><span>Cargando</span></div></div>
     <script src="rpg-online.js"></script>
     <script src="rpg-touch.js"></script>
-    <script src="rpg-touch.js"></script>
 
     
 	<script>
@@ -197,7 +196,6 @@
         //Load all assets and start the game
         window.rpgStartOnline(function() { game.loadAllAssets(function() {
             game.startGameLoop();
-            window.rpgTouchInit(game);
             window.rpgTouchInit(game);
             document.getElementById("arcanum-loading").remove();
         }); });
