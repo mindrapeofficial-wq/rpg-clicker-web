@@ -159,22 +159,15 @@
       #arcanum-loading .loading-mark::before, #arcanum-loading .loading-mark::after { content: ""; width: 30px; height: 1px; background: linear-gradient(90deg, transparent, #a98a54); }
       #arcanum-loading .loading-mark::after { transform: rotate(180deg); }
       #arcanum-loading .loading-mark span { display: inline-block; animation: mark-glow 1.7s ease-in-out infinite alternate; }
-      #auth-panel { position: fixed; inset: 0; z-index: 10001; display: grid; place-content: center; justify-items: center; gap: 22px; background: #000; color: #f3e4c4; font: 18px Georgia, serif; text-align: center; padding: 24px; }
-      #auth-panel[hidden] { display: none; }
-      #auth-panel img { width: min(82vw, 620px); height: auto; }
-      #auth-status { color: #8e7b5e; font: 11px Georgia, serif; letter-spacing: .2em; text-transform: uppercase; }
-      #google-signin { border: 0; background: transparent; color: #bfa16e; padding: 8px 12px; font: 14px Georgia, serif; text-decoration: underline; text-underline-offset: 5px; cursor: pointer; }
-      #google-signin[hidden] { display: none; }
-      #google-signin:disabled { opacity: .55; cursor: wait; }
       #legal-links { position: fixed; z-index: 10002; right: 12px; bottom: 8px; display: flex; gap: 14px; font: 11px Georgia, serif; }
       #legal-links a { color: #c9a76e; text-decoration: none; text-shadow: 0 1px 3px #000; }
+      #legal-links a[hidden] { display: none; }
       #legal-links a:hover, #legal-links a:focus { text-decoration: underline; }
       @keyframes mark-glow { from { opacity: .48; text-shadow: none; } to { opacity: 1; text-shadow: 0 0 12px #d0a45e; } }
     </style>
 </head>
 <body>
-    <div id="auth-panel" hidden><img src="arcanumgames-studio-logo.png" alt="arcanumgames.es"><button id="google-signin" type="button" hidden>Reintentar acceso con Google</button><div id="auth-status" role="status"></div></div>
-    <nav id="legal-links" aria-label="Cuenta y privacidad"><a href="privacy.html" target="_blank" rel="noopener">Privacidad</a><a href="delete-account.html" target="_blank" rel="noopener">Eliminar cuenta</a></nav>
+    <nav id="legal-links" aria-label="Cuenta y privacidad"><a id="google-signin" href="#">Conectar con Google</a><a href="privacy.html" target="_blank" rel="noopener">Privacidad</a><a href="delete-account.html" target="_blank" rel="noopener">Eliminar cuenta</a></nav>
     <div id="arcanum-loading" role="status" aria-label="Cargando RPG CLICKER"><img src="arcanumgames-studio-logo.png" alt="arcanumgames.es"><div class="loading-mark" aria-hidden="true"><span>Cargando</span></div></div>
     <script src="rpg-online.js"></script>
     <script src="rpg-touch.js"></script>
@@ -203,12 +196,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
