@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="180" viewBox="0 0 960 180" role="img" aria-label="arcanumgames.es">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff3d2"/><stop offset=".48" stop-color="#e9d5a5"/><stop offset="1" stop-color="#bb9256"/>
+    </linearGradient>
+    <filter id="glow" x="-10%" y="-50%" width="120%" height="200%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#b48a49" flood-opacity=".45"/></filter>
+  </defs>
+  <text x="480" y="105" text-anchor="middle" font-family="Georgia,serif" font-size="81" font-weight="bold" letter-spacing="-2" fill="url(#gold)" filter="url(#glow)">arcanumgames.es</text>
+  <path d="M80 128H430l50 15 50-15h350" fill="none" stroke="#b8955e" stroke-width="2"/>
+  <path d="M480 134l7 9-7 9-7-9z" fill="#e8d0a3"/>
+</svg>

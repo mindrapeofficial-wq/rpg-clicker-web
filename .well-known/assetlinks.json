@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.nyobe.rpgclicker2",
+      "sha256_cert_fingerprints": ["6E:6E:87:D6:F9:45:1A:4B:1A:9E:61:AB:F0:3B:F4:BB:19:C1:40:9D:BE:AE:13:AC:9C:4C:2D:52:0E:77:9F:7B"]
+    }
+  }
+]

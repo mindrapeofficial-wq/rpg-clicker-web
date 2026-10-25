@@ -1,0 +1,28 @@
+{
+  "name": "RPG CLICKER",
+  "short_name": "RPG CLICKER",
+  "id": "com.nyobe.rpgclicker2",
+  "description": "RPG CLICKER — juego de fantasía incremental.",
+  "orientation": "any",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "black",
+  "categories": [
+    "games",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "type": "image/png",
+      "sizes": "192x192",
+      "src": "icon-192.png",
+      "purpose": "any maskable"
+    },
+    {
+      "type": "image/png",
+      "sizes": "512x512",
+      "src": "icon-512.png",
+      "purpose": "any maskable"
+    }
+  ]
+}

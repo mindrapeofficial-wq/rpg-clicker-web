@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>RPG CLICKER</title>
+    <link rel="manifest" href="manifest.webmanifest">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+            overflow: hidden;
+		}
+        #canvasArea {
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+
+        
+	</style>
+    <!-- Libs and GDJS core files : -->
+		<script src="libs/jshashtable.js" crossorigin="anonymous"></script>
+	<script src="logger.js" crossorigin="anonymous"></script>
+	<script src="gd.js" crossorigin="anonymous"></script>
+	<script src="libs/rbush.js" crossorigin="anonymous"></script>
+	<script src="AsyncTasksManager.js" crossorigin="anonymous"></script>
+	<script src="inputmanager.js" crossorigin="anonymous"></script>
+	<script src="jsonmanager.js" crossorigin="anonymous"></script>
+	<script src="Model3DManager.js" crossorigin="anonymous"></script>
+	<script src="ResourceLoader.js" crossorigin="anonymous"></script>
+	<script src="ResourceCache.js" crossorigin="anonymous"></script>
+	<script src="timemanager.js" crossorigin="anonymous"></script>
+	<script src="polygon.js" crossorigin="anonymous"></script>
+	<script src="runtimeobject.js" crossorigin="anonymous"></script>
+	<script src="profiler.js" crossorigin="anonymous"></script>
+	<script src="RuntimeInstanceContainer.js" crossorigin="anonymous"></script>
+	<script src="runtimescene.js" crossorigin="anonymous"></script>
+	<script src="scenestack.js" crossorigin="anonymous"></script>
+	<script src="force.js" crossorigin="anonymous"></script>
+	<script src="RuntimeLayer.js" crossorigin="anonymous"></script>
+	<script src="layer.js" crossorigin="anonymous"></script>
+	<script src="RuntimeCustomObjectLayer.js" crossorigin="anonymous"></script>
+	<script src="timer.js" crossorigin="anonymous"></script>
+	<script src="runtimewatermark.js" crossorigin="anonymous"></script>
+	<script src="runtimegame.js" crossorigin="anonymous"></script>
+	<script src="variable.js" crossorigin="anonymous"></script>
+	<script src="variablescontainer.js" crossorigin="anonymous"></script>
+	<script src="oncetriggers.js" crossorigin="anonymous"></script>
+	<script src="runtimebehavior.js" crossorigin="anonymous"></script>
+	<script src="SpriteAnimator.js" crossorigin="anonymous"></script>
+	<script src="spriteruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="affinetransformation.js" crossorigin="anonymous"></script>
+	<script src="CustomRuntimeObjectInstanceContainer.js" crossorigin="anonymous"></script>
+	<script src="CustomRuntimeObject.js" crossorigin="anonymous"></script>
+	<script src="CustomRuntimeObject2D.js" crossorigin="anonymous"></script>
+	<script src="indexeddb.js" crossorigin="anonymous"></script>
+	<script src="events-tools/commontools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/variabletools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/runtimescenetools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/inputtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/objecttools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/cameratools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/soundtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/storagetools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/stringtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/windowtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/networktools.js" crossorigin="anonymous"></script>
+	<script src="splash/gd-logo-light.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-filters-tools.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/runtimegame-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/runtimescene-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/layer-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-image-manager.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-bitmapfont-manager.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/spriteruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/CustomRuntimeObject2DPixiRenderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/DebuggerPixiRenderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/loadingscreen-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-effects-manager.js" crossorigin="anonymous"></script>
+	<script src="howler-sound-manager/howler.min.js" crossorigin="anonymous"></script>
+	<script src="howler-sound-manager/howler-sound-manager.js" crossorigin="anonymous"></script>
+	<script src="fontfaceobserver-font-manager/fontfaceobserver.js" crossorigin="anonymous"></script>
+	<script src="fontfaceobserver-font-manager/fontfaceobserver-font-manager.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__choose__randomnumber-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__choose__randomstring-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__ellipsemovement__ellipsemovement.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__firebullet__firebullet.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flashtransitionpainter__flashtransitionpainter.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__formatnumber__formatbyseparator-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__formatnumber__formatbyunit-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__formatnumber__formatbyunitglobal-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__formatnumber__formatbyunitscene-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__formatnumber__strinsert-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__panelspritecontinuousbar__panelspritecontinuousbar.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__panelspritecontinuousbar__resourcebar.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shockwaveeffect__ellipseshockwave.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shockwaveeffect__rgbmean-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__spritemasking__mask-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__spritemasking__maskwithshapepainter-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__spritemasking__unmask-func.js" crossorigin="anonymous"></script>
+	<script src="Extensions/BitmapText/bitmaptextruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/BitmapText/bitmaptextruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/DestroyOutsideBehavior/destroyoutsideruntimebehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Lighting/lightobstacleruntimebehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Lighting/lightruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Lighting/lightruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/LinkedObjects/linkedobjects.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PanelSpriteObject/panelspriteruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PanelSpriteObject/panelspriteruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/ParticleSystem/particleemitterobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/ParticleSystem/particleemitterobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/ParticleSystem/pixi-particles-pixi-renderer.min.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Physics2Behavior/Box2D_v2.3.1_min.wasm.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Physics2Behavior/physics2runtimebehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PrimitiveDrawing/pixi-graphics-extras/graphics-extras.min.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PrimitiveDrawing/shapepainterruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PrimitiveDrawing/shapepainterruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TextInput/textinputruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TextInput/textinputruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TextObject/textruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TextObject/textruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TiledSpriteObject/tiledspriteruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TiledSpriteObject/tiledspriteruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TweenBehavior/TweenManager.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TweenBehavior/tweenruntimebehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TweenBehavior/tweentools.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/AnimatableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/EffectBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/FlippableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/OpacityBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/ResizableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/ScalableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/TextContainerBehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/blending-mode-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/glow-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/outline-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/pixi-filters/filter-glow.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/pixi-filters/filter-outline.js" crossorigin="anonymous"></script>
+	<script src="code0.js" crossorigin="anonymous"></script>
+	<script src="data.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0"></script>
+
+
+
+<style>
+      #arcanum-loading { position: fixed; inset: 0; z-index: 10000; display: grid; place-content: center; justify-items: center; gap: 32px; background: #000; color: #d8dfe9; font: 16px Georgia, serif; }
+      #arcanum-loading img { width: min(86vw, 760px); height: auto; display: block; }
+      #arcanum-loading .loading-mark { display: flex; align-items: center; gap: 18px; color: #c6a86e; font: 11px Georgia, serif; letter-spacing: .32em; text-transform: uppercase; }
+      #arcanum-loading .loading-mark::before, #arcanum-loading .loading-mark::after { content: ""; width: 30px; height: 1px; background: linear-gradient(90deg, transparent, #a98a54); }
+      #arcanum-loading .loading-mark::after { transform: rotate(180deg); }
+      #arcanum-loading .loading-mark span { display: inline-block; animation: mark-glow 1.7s ease-in-out infinite alternate; }
+      #auth-panel { position: fixed; inset: 0; z-index: 10001; display: grid; place-content: center; justify-items: center; gap: 22px; background: #000; color: #f3e4c4; font: 18px Georgia, serif; text-align: center; padding: 24px; }
+      #auth-panel[hidden] { display: none; }
+      #auth-panel img { width: min(82vw, 620px); height: auto; }
+      #auth-status { color: #8e7b5e; font: 11px Georgia, serif; letter-spacing: .2em; text-transform: uppercase; }
+      #google-signin { border: 0; background: transparent; color: #bfa16e; padding: 8px 12px; font: 14px Georgia, serif; text-decoration: underline; text-underline-offset: 5px; cursor: pointer; }
+      #google-signin[hidden] { display: none; }
+      #google-signin:disabled { opacity: .55; cursor: wait; }
+      #legal-links { position: fixed; z-index: 10002; right: 12px; bottom: 8px; display: flex; gap: 14px; font: 11px Georgia, serif; }
+      #legal-links a { color: #c9a76e; text-decoration: none; text-shadow: 0 1px 3px #000; }
+      #legal-links a:hover, #legal-links a:focus { text-decoration: underline; }
+      @keyframes mark-glow { from { opacity: .48; text-shadow: none; } to { opacity: 1; text-shadow: 0 0 12px #d0a45e; } }
+    </style>
+</head>
+<body>
+    <div id="auth-panel" hidden><img src="arcanumgames-studio-logo.png" alt="arcanumgames.es"><button id="google-signin" type="button" hidden>Reintentar acceso con Google</button><div id="auth-status" role="status"></div></div>
+    <nav id="legal-links" aria-label="Cuenta y privacidad"><a href="privacy.html" target="_blank" rel="noopener">Privacidad</a><a href="delete-account.html" target="_blank" rel="noopener">Eliminar cuenta</a></nav>
+    <div id="arcanum-loading" role="status" aria-label="Cargando RPG CLICKER"><img src="arcanumgames-studio-logo.png" alt="arcanumgames.es"><div class="loading-mark" aria-hidden="true"><span>Cargando</span></div></div>
+    <script src="rpg-online.js"></script>
+
+    
+	<script>
+
+    (function() {
+        //Initialization
+        var game = new gdjs.RuntimeGame(gdjs.projectData, {});
+
+        //Create a renderer
+        game.getRenderer().createStandardCanvas(document.body);
+
+        //Bind keyboards/mouse/touch events
+        game.getRenderer().bindStandardEvents(game.getInputManager(), window, document);
+
+        //Load all assets and start the game
+        window.rpgStartOnline(function() { game.loadAllAssets(function() {
+            game.startGameLoop();
+            document.getElementById("arcanum-loading").remove();
+        }); });
+    })();
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
