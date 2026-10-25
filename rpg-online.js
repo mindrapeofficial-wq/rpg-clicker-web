@@ -67,6 +67,12 @@
   }
   button.addEventListener('click', signIn);
   window.rpgStartOnline = async startGame => {
+    if (location.protocol !== 'https:' && !['127.0.0.1', 'localhost'].includes(location.hostname)) {
+      panel.hidden = false; button.hidden = true;
+      setStatus('Estamos activando el acceso seguro. Vuelve en unos minutos.');
+      document.getElementById('arcanum-loading').remove();
+      return;
+    }
     setStatus('Comprobando la sesión…');
     const sessionResult = await Promise.race([client.auth.getSession(), new Promise(resolve => setTimeout(() => resolve({ data: { session: null }, error: null }), 5000))]);
     const { data: { session }, error } = sessionResult;
@@ -84,6 +90,7 @@
   };
   document.addEventListener('visibilitychange', () => { if (document.hidden) saveNow(); });
 })();
+
 
 
 
