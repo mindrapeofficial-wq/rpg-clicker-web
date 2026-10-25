@@ -178,6 +178,7 @@
     (function() {
         //Initialization
         var game = new gdjs.RuntimeGame(gdjs.projectData, {});
+        window.rpgAttachGame(game);
 
         //Create a renderer
         game.getRenderer().createStandardCanvas(document.body);

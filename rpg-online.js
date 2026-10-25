@@ -2,7 +2,8 @@
   const client = window.supabase?.createClient('https://mrmvmoyysxuopqexbxfk.supabase.co', 'sb_publishable_tZEPJi2v7Tp-xDuVa0qWRw_geizIGoD');
   const button = document.getElementById('google-signin');
   const guestSaveKey = 'rpg-clicker-guest-save';
-  let user, displayName, pendingSave, saveTimer;
+  let user, displayName, pendingSave, saveTimer, runtimeGame;
+  window.rpgAttachGame = game => { runtimeGame = game; };
   const queries = new Map();
   const setStatus = message => { button.textContent = message; };
   const readGuestSave = () => {
@@ -67,9 +68,20 @@
     }
   };
 
+  function captureProgress() {
+    const scene = runtimeGame?.getSceneStack().getCurrentScene();
+    if (!scene || !scene.getVariables().has('GameData')) return;
+    const variable = scene.getVariables().get('GameData');
+    const data = variable.toJSObject();
+    if (!String(data.PlayerUsername || '').trim()) return;
+    writeLocalSave(data);
+    gdjs.evtTools.firebaseTools.firestore.writeDocument('Leaderboard', data.PlayerUsername, variable);
+  }
+
   async function signIn(event) {
     event?.preventDefault();
     if (!client) { setStatus('Google no disponible. Reintentar'); return; }
+    captureProgress();
     await saveNow();
     setStatus('Conectando con Google…');
     const { error } = await client.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + window.location.pathname } });
@@ -105,5 +117,6 @@
     button.hidden = true;
     startGame();
   };
-  document.addEventListener('visibilitychange', () => { if (document.hidden) saveNow(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { captureProgress(); saveNow(); } });
+  window.addEventListener('pagehide', () => { captureProgress(); saveNow(); });
 })();
